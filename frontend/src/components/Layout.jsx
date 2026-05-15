@@ -68,8 +68,8 @@ const Layout = ({ children, title }) => {
       <div className="main-wrapper">
         {/* Top Navbar */}
         <header className="top-navbar">
-          <h1 style={{ fontSize: '1.5rem', fontWeight: 600 }}>{title}</h1>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+          <h1 style={{ fontSize: 'clamp(1.2rem, 4vw, 1.5rem)', fontWeight: 600, wordBreak: 'break-word', marginRight: '1rem' }}>{title}</h1>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flex: 1, minWidth: '200px' }}>
             <div className="search-bar">
               <Search size={18} style={{ marginRight: '0.5rem' }} />
               <input 

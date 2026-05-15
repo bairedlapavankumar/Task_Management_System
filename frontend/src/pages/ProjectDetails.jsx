@@ -147,14 +147,14 @@ const ProjectDetails = () => {
 
   return (
     <Layout title={`${project.name} ${project.uniqueId ? `(#${project.uniqueId})` : ''}`}>
-      <div style={{ display: 'flex', gap: '2rem' }}>
+      <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
         
         {/* Main Board Area */}
-        <div style={{ flex: 1 }}>
+        <div style={{ flex: '1 1 min(100%, 700px)', minWidth: 0 }}>
           {isAdmin && (
             <div className="saas-card" style={{ padding: '1.5rem', marginBottom: '2rem' }}>
               <h3 style={{ marginBottom: '1rem', fontSize: '1.125rem', fontWeight: 600 }}>Create New Task</h3>
-              <form onSubmit={handleCreateTask} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <form onSubmit={handleCreateTask} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
                 <div className="form-group" style={{ marginBottom: 0 }}>
                   <label>Title</label>
                   <input type="text" required value={taskTitle} onChange={e => setTaskTitle(e.target.value)} placeholder="Task title..." />
@@ -163,7 +163,7 @@ const ProjectDetails = () => {
                   <label>Due Date</label>
                   <input type="date" value={taskDue} onChange={e => setTaskDue(e.target.value)} />
                 </div>
-                <div className="form-group" style={{ marginBottom: 0, gridColumn: '1 / span 2' }}>
+                <div className="form-group" style={{ marginBottom: 0, gridColumn: '1 / -1' }}>
                   <label>Description</label>
                   <input type="text" value={taskDesc} onChange={e => setTaskDesc(e.target.value)} placeholder="Detailed description..." />
                 </div>
@@ -184,14 +184,14 @@ const ProjectDetails = () => {
                     ))}
                   </select>
                 </div>
-                <button type="submit" className="btn btn-primary" style={{ gridColumn: '1 / span 2' }}>Add Task</button>
+                <button type="submit" className="btn btn-primary" style={{ gridColumn: '1 / -1' }}>Add Task</button>
               </form>
             </div>
           )}
 
           {/* Kanban Board Layout */}
           <DragDropContext onDragEnd={handleDragEnd}>
-            <div style={{ display: 'flex', gap: '1.5rem', overflowX: 'auto', paddingBottom: '1rem', flex: 1, alignItems: 'flex-start' }}>
+            <div style={{ display: 'flex', gap: '1.5rem', overflowX: 'auto', paddingBottom: '1rem', width: '100%', alignItems: 'flex-start', WebkitOverflowScrolling: 'touch' }}>
               {['To Do', 'In Progress', 'Done'].map(status => (
                 <div key={status} style={{ flex: 1, minWidth: '300px', background: 'var(--bg-color)', borderRadius: '12px', padding: '1rem', display: 'flex', flexDirection: 'column' }}>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
@@ -270,7 +270,7 @@ const ProjectDetails = () => {
         </div>
 
         {/* Right Sidebar (Project Info & Members) */}
-        <div style={{ width: '300px', flexShrink: 0 }}>
+        <div style={{ flex: '1 1 300px', width: '100%' }}>
           <div className="saas-card" style={{ padding: '1.5rem', marginBottom: '1.5rem' }}>
             <h3 style={{ fontSize: '1.125rem', fontWeight: 600, marginBottom: '0.5rem' }}>About Project</h3>
             {project.uniqueId && (
