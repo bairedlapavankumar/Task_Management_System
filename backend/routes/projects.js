@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const Project = require('../models/Project');
 const User = require('../models/User');
-const Notification = require('../models/Notification');
 const { protect, admin } = require('../middleware/authMiddleware');
 
 // @route   POST /api/projects
@@ -21,13 +20,6 @@ router.post('/', protect, admin, async (req, res) => {
     });
 
     const createdProject = await project.save();
-
-    // Create notification for creator
-    await Notification.create({
-      user: req.user._id,
-      title: 'Project Created',
-      message: `You successfully created project "${name}".`
-    });
 
     res.status(201).json(createdProject);
   } catch (error) {
@@ -104,13 +96,6 @@ router.post('/:projectId/members', protect, admin, async (req, res) => {
 
     project.members.push(userToAdd._id);
     await project.save();
-
-    // Create notification for the new member
-    await Notification.create({
-      user: userToAdd._id,
-      title: 'Added to Project',
-      message: `You have been added to the project "${project.name}".`
-    });
 
     res.json(project);
   } catch (err) {

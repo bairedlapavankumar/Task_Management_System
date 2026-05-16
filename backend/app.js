@@ -24,8 +24,6 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/projects', require('./routes/projects'));
 app.use('/api', require('./routes/tasks'));
 app.use('/api/dashboard', require('./routes/dashboard'));
-app.use('/api/notifications', require('./routes/notifications'));
-
 // Serve frontend
 const path = require('path');
 app.use(express.static(path.join(__dirname, '../frontend/dist')));

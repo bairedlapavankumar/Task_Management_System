@@ -38,15 +38,6 @@ router.post('/projects/:projectId/tasks', protect, admin, async (req, res) => {
 
     const createdTask = await task.save();
 
-    // Create notification for assigned user
-    if (assignedTo && assignedTo.toString() !== req.user._id.toString()) {
-      await require('../models/Notification').create({
-        user: assignedTo,
-        title: 'New Task Assigned',
-        message: `You have been assigned to the task "${title}" in project "${project.name}".`
-      });
-    }
-
     res.status(201).json(createdTask);
   } catch (error) {
     console.error(error);
