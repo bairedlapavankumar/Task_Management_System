@@ -309,8 +309,19 @@ body {
   margin-bottom: 1.5rem;
 }
 
+.mobile-only {
+  display: none !important;
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
+  .mobile-only {
+    display: flex !important;
+  }
+  .desktop-only {
+    display: none !important;
+  }
+  
   /* Layout adjustments */
   .app-layout {
     flex-direction: column;

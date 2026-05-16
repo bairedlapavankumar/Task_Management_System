@@ -45,6 +45,10 @@ const Layout = ({ children, title }) => {
             <FolderKanban size={20} />
             Projects
           </Link>
+          <button onClick={logout} className="sidebar-nav-link mobile-only" style={{ border: 'none', background: 'transparent', cursor: 'pointer', textAlign: 'left', color: 'var(--danger-color)' }}>
+            <LogOut size={20} />
+            Log Out
+          </button>
         </nav>
 
         <div style={{ marginTop: 'auto', borderTop: '1px solid var(--border-color)', paddingTop: '1.5rem' }}>
